@@ -18,14 +18,14 @@ jobs:
   
     - name: Install dependencies
       run: |
-        npm install -g newman newman-reporter-html
+        npm install -g newman 
 
     - name: Test
       env:
         DIMAGIQA_MAIL_USERNAME: ${{ secrets.DIMAGIQA_MAIL_USERNAME }}
         DIMAGIQA_MAIL_PASSWORD: ${{ secrets.DIMAGIQA_MAIL_PASSWORD }}
       run: |
-        node_modules/.bin/newman run test_collection.json -e test_env.json -r htmlextra --reporter-htmlextra-export ./result/report.html
+        node_modules/.bin/newman run test_collection.json -e test_env.json -r htmlextra 
 
     - name: Send Email
       uses: dawidd6/action-send-mail@v3
@@ -47,7 +47,7 @@ jobs:
         from: <${{secrets.DIMAGIQA_MAIL_USERNAME}}>
         # Optional HTML body read from file:
         html_body: "Report sent"
-        attachments: /home/runner/work/dimagi-qa/postman-test/result/report.html
+        attachments: /home/runner/work/dimagi-qa/postman-test/newman/*.html
         # Optional priority: 'high', 'normal' (default) or 'low'
         priority: normal
 
