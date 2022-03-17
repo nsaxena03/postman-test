@@ -26,7 +26,7 @@ jobs:
         DIMAGIQA_MAIL_USERNAME: ${{ secrets.DIMAGIQA_MAIL_USERNAME }}
         DIMAGIQA_MAIL_PASSWORD: ${{ secrets.DIMAGIQA_MAIL_PASSWORD }}
       run: |
-        node_modules/.bin/newman run test_collection.json -e test_env.json -r htmlextra --reporter-htmlextra-export ./Result/report.html
+        node_modules/.bin/newman run test_collection.json -e test_env.json -r htmlextra --reporter-htmlextra-export ./report.html
 
     - name: Send Email
       uses: dawidd6/action-send-mail@v3
@@ -47,7 +47,7 @@ jobs:
         # Required sender full name (address can be skipped):
         from: <${{secrets.DIMAGIQA_MAIL_USERNAME}}>
         # Optional HTML body read from file:
-        html_body: file:////home/runner/work/postman-test/Result/report.html
+        html_body: file:////home/runner/work/postman-test/report.html
         # Optional priority: 'high', 'normal' (default) or 'low'
         priority: normal
 
