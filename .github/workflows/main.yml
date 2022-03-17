@@ -14,19 +14,16 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
-
-    - name: Postman Report 
-      env:
-        DIMAGIQA_MAIL_USERNAME: ${{ secrets.DIMAGIQA_MAIL_USERNAME }}
-        DIMAGIQA_MAIL_PASSWORD: ${{ secrets.DIMAGIQA_MAIL_PASSWORD }}
-       
+    - uses: actions/checkout@v2       
   
     - name: Install dependencies
       run: |
         npm install newman
 
     - name: Test
+      env:
+        DIMAGIQA_MAIL_USERNAME: ${{ secrets.DIMAGIQA_MAIL_USERNAME }}
+        DIMAGIQA_MAIL_PASSWORD: ${{ secrets.DIMAGIQA_MAIL_PASSWORD }}
       run: |
         node_modules/.bin/newman run test_collection.json -e test_env.json -r htmlextra --reporter-htmlextra-export ./Result/report.html
 
