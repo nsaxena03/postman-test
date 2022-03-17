@@ -22,4 +22,4 @@ jobs:
 
     - name: Test
       run: |
-        node_modules/.bin/newman run test/test_collection.json -e test_env.json 
+        node_modules/.bin/newman run test_collection.json -e test_env.json 
